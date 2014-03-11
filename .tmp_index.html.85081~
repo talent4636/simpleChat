@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	
+	<script type="text/javascript" href="js/jquery-1.8.2.min.js"></script>
+</head>
+<body>
+	<div class="chat">
+		<div class="top-title">
+			<div class="face">
+				<img src="images/face/1.png">
+			</div>
+			<div "text">
+				<span class="on-chat">您正在和<strong>王麻子</strong>聊天</span>
+				<span class="off-line" style="display: none;">您正在给<em>xxx</em>发送离线消息</span>
+			</div>
+		</div>
+		<div class="main">
+			<div class="friend-list">
+				<div class="status-num">
+					<span>好友（3/5）</span>
+				</div>
+				<div class='list'>
+					<ul>
+						<li class="on">张三</li>
+						<li class="on">李四</li>
+						<li class="on">王麻子</li>
+						<li class="off">王二小</li>
+						<li class="off">潘金莲</li>
+					</ul>
+				</div>
+			</div>
+			<div class="msg-main">
+				<div class="msg-box">
+					<ul>
+						<li>
+							<em class="name">张飞</em><em class="time">2014-03-07 16:4:58</em>
+							<span class="content">你好，你是谁？</span>
+						</li>
+						<li>
+							<em class="name">王麻子</em><em class="time">2014-03-07 16:4:58</em>
+							<span class="content">你好，我是王麻子，你是？</span>
+						</li>
+						<li>
+							<em class="name">张飞</em><em class="time">2014-03-07 16:4:58</em>
+							<span class="content">哦，好高兴见到你！！</span>
+						</li>
+					</ul>
+				</div>
+				<div class="msg-send">
+					<div class="text-area">
+						<textarea rows="3" cols="55"></textarea>
+					</div>
+					<div class="send-btn">
+						<input type="submit" value="发送" id="send-now" /> 
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+</body>
+</html>

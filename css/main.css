@@ -1,0 +1,23 @@
+body{width: 100%;font-family: "Microsoft YaHei";font-size: 14px;}
+em{font-style:normal;font-size:13px;}
+em.name{}
+.chat{margin-left: auto;margin-right: auto;width: 600px;height: 500px;border:1px solid #999;background: #9E8872;border-radius: 5px;}
+.chat .top-title{height: 50px;width: 100%;text-align: left;line-height: 30px;}
+.chat .top-title div{float:left; padding: 10px;}
+.chat .top-title .face{width: 30px;height: 30px;}
+.chat .top-title .text{width: 400px;height: 30px;}
+.chat .top-title .face img{width: 30px;height: 30px;}
+.chat .top-title strong{color: red;padding: 0 5px;font-weight: 700;}
+.chat .main{width: 580px;height: 430px;margin: 10px;}
+.chat .main div{float: left;}
+.chat .main .friend-list{width: 140px;height: 400px;background: white;border-radius: 3px;padding: 5px;}
+.chat .main .friend-list .list{width: 140px;height: 350px;}
+.chat .main .friend-list .list ul li{list-style-type:none;padding: 5px;margin-left: -20px;}
+.chat .main .msg-main{width: 420px;height: 430px;margin-left: 10px;}
+.chat .main .msg-main .msg-box{background: #BBB;width: 400px;height: 300px;border-radius: 3px;padding: 5px;}
+.chat .main .msg-main .msg-box .content{display: block;}
+.chat .main .msg-main .msg-send{padding: 5px 0 0 0;width: 400px;height: 90px;}
+.chat .main .msg-main .msg-send .text-area{width: 390px;height: 60px;}
+.chat .main .msg-main .msg-send .text-area textarea{resize: none;}
+.chat .main .msg-main .msg-send .send-btn{width: 407px;height: 30px;}
+.chat .main .msg-main .msg-send .send-btn input{float: right;width: 80px;height: 25px;border-radius: 3px;border: 1px solid #DDD;}
