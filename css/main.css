@@ -15,6 +15,8 @@ em.name{}
 .chat .main .friend-list .list ul li{list-style-type:none;padding: 5px;margin-left: -20px;}
 .chat .main .msg-main{width: 420px;height: 430px;margin-left: 10px;}
 .chat .main .msg-main .msg-box{background: #BBB;width: 400px;height: 300px;border-radius: 3px;padding: 5px;}
+.chat .main .msg-main .msg-box li{list-style-type:none;margin-left:-40px;}
+.chat .main .msg-main .msg-box li.failure .wrong{color:red;font-size:10px;float:right;}
 .chat .main .msg-main .msg-box .content{display: block;}
 .chat .main .msg-main .msg-send{padding: 5px 0 0 0;width: 400px;height: 90px;}
 .chat .main .msg-main .msg-send .text-area{width: 390px;height: 60px;}

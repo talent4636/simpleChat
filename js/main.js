@@ -12,6 +12,8 @@ var main = {
 			//发送
 			msg.send();
 		});
+		//获取信息
+		msg.get();
 		
 	},
 	
