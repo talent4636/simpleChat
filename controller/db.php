@@ -29,18 +29,20 @@ class db{
 		$result = mysql_query($sql);
 		if ($result) {
 		    $row = mysql_fetch_array($result);
-// 		    while ($row = mysql_fetch_array($result)){
-		        
-// 		    }
+		    while ($row = mysql_fetch_array($result)){
+		        $r[] = array(
+		                'content' => $row['content'],
+		                'time' => $row['time'],
+		                );
+		    }
 		    mysql_free_result($result);
 		}
-		print_r($row);exit;
-// 		return $row;
+		return $r;
 	}
 
 	//获取数据
 	public function getRow(){
-
+	    //TODO
 	}
 
 	public function save($tableName,$params){

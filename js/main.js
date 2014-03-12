@@ -5,7 +5,6 @@ $(document).ready(function(){
 
 var main = {
 	
-	
 	addEvent:function(){
 		var sendBtn = $('.send-btn input');
 		sendBtn.live("click",function(){
