@@ -23,3 +23,15 @@ em.name{}
 .chat .main .msg-main .msg-send .text-area textarea{resize: none;}
 .chat .main .msg-main .msg-send .send-btn{width: 407px;height: 30px;}
 .chat .main .msg-main .msg-send .send-btn input{float: right;width: 80px;height: 25px;border-radius: 3px;border: 1px solid #DDD;}
+
+/*下面是login页面的css*/
+.login{margin-left: auto;margin-right: auto;width: 280px;height: 230px;}
+.login .main{overflow:hidden;margin-top: 150px;border: 5px solid #999;width: 230px;height: 180px;border-radius: 10px;padding: 20px;}
+.login .main .title{width: 100%;height: 30px;font-size: 20px;overflow: hidden;}
+.login .login-input-area tr input{outline: none;}
+.login .login-input-area tr.submit input{padding: 3px 15px;border: 1px solid #555;border-radius: 5px;margin-top: 15px;}
+.login .login-input-area tr.submit input:hover{background-color:#FFF;}
+.login .login-input-area th input{border: none;border-bottom: 1px solid #999;}
+
+.text-center{text-align: center;width: 100%;display: block;}
+

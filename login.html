@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="js/message.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+</head>
+<body>
+    <div class="login">
+        <div class="main">
+            <div class="title"><span class="text-center">欢迎登陆</span></div>
+            <div class="login-input-area">
+                <form method="post" action="controller/member.php?type=login">
+                    <table>
+                        <tr>
+                            <th>用户名：</th>
+                            <th><input type="text"></th>
+                        </tr>
+                        <tr>
+                            <th>密&nbsp;&nbsp;&nbsp;&nbsp;码：</th>
+                            <th><input type="password" /></th>
+                        </tr>
+                        <tr>
+                            <th>验证码：</th>
+                            <th><input type="text" maxlength="4"/></th>
+                        </tr>
+                        <tr>
+                            <th>pic</th>
+                            <th><img src=""/></th>
+                        </tr>
+                        <tr class="submit">
+                            <th></th>
+                            <th>
+                                <input type="submit" value="登陆"/>
+                                <a href="signup.html"><input type="button" value="注册"/></a>
+                            </th>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
