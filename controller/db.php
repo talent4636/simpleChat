@@ -20,6 +20,7 @@ class db{
 		if (!$tableName || !$getWhat) {
 			return false;
 		}
+		$rowList = explode(',', $getWhat);
 		$filter = $this->_toFilter($params,'AND');
 		if (!$start && !$limit ){
     		$sql = "SELECT ".$getWhat." FROM ".$tableName." WHERE ".$filter." ".$orderBy;
@@ -27,17 +28,24 @@ class db{
     		$sql = "SELECT ".$getWhat." FROM ".$tableName." WHERE ".$filter." LIMIT ".$start.",".$limit." ".$orderBy;
 		}
 		$result = mysql_query($sql);
+		$r = array();
+// 		print_r(mysql_fetch_array($result));exit;
 		if ($result) {
-		    $row = mysql_fetch_array($result);
+		    $i = 0;
 		    while ($row = mysql_fetch_array($result)){
-		        $r[] = array(
-		                'content' => $row['content'],
-		                'time' => $row['time'],
-		                );
+                foreach ($rowList as $v){
+                    $r[$i][$v] = $row[$v];
+                }
+                $i++;
 		    }
 		    mysql_free_result($result);
 		}
-		return $r;
+		if (@$r[0]){
+		    return $r;
+		}else {
+		    return false;
+		}
+		
 	}
 
 	//获取数据

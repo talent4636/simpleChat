@@ -41,15 +41,15 @@
                         <tr class="sex">
                             <th>性别：</th>
                             <th>
-                            	<select name="sex"> 
-								    <option value ="male">&nbsp;&nbsp;男&nbsp;&nbsp;</option>
-								    <option value ="famale">&nbsp;&nbsp;女&nbsp;&nbsp;</option>
+                            	<select class="sex"> 
+								    <option value ="volvo">&nbsp;&nbsp;男&nbsp;&nbsp;</option>
+								    <option value ="volvo">&nbsp;&nbsp;女&nbsp;&nbsp;</option>
                             	</select>
 							</th>
                         </tr>
                         <tr>
                             <th>验证码：</th>
-                            <th><input name="verify_code" type="text" maxlength="5"/></th>
+                            <th><input name="verify_code" type="text" maxlength="4"/></th>
                         </tr>
                         <tr class="pic">
                             <th></th>
