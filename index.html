@@ -4,8 +4,11 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="js/cookie.js"></script>
+	<script type="text/javascript" src="js/member.js"></script>
 	<script type="text/javascript" src="js/message.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
+
 </head>
 <body>
 	<div class="chat">
@@ -14,29 +17,27 @@
 				<img src="images/face/1.png">
 			</div>
 			<div class="text">
-				<span class="on-chat">您正在和<strong>王麻子</strong>聊天</span>
+				<!-- todo -->
+				<span class="on-chat" with-id="">您正在和<strong>-</strong>聊天</span>
 				<span class="off-line" style="display: none;">您正在给<em>xxx</em>发送离线消息</span>
+				<input class="logout-btn" type="button" value="退出">
 			</div>
 		</div>
 		<div class="main">
 			<div class="friend-list">
 				<div class="status-num">
-					<span>好友（3/5）</span>
+					<span>好友列表（<strong>-</strong>）</span>
 				</div>
 				<div class='list'>
 					<ul>
-						<li class="on">张三</li>
-						<li class="on">李四</li>
-						<li class="on">王麻子</li>
-						<li class="off">王二小</li>
-						<li class="off">潘金莲</li>
+						<!-- 从后台取数据 -->
 					</ul>
 				</div>
 			</div>
 			<div class="msg-main">
 				<div class="msg-box">
 					<ul>
-						<li>
+						<!-- <li>
 							<em class="name">张飞</em><em class="time">2014-03-07 16:4:58</em>
 							<span class="content">你好，你是谁？</span>
 						</li>
@@ -47,7 +48,7 @@
 						<li>
 							<em class="name">张飞</em><em class="time">2014-03-07 16:4:58</em>
 							<span class="content">哦，好高兴见到你！！</span>
-						</li>
+						</li> -->
 					</ul>
 				</div>
 				<div class="msg-send">

@@ -23,7 +23,11 @@ class db{
 		$rowList = explode(',', $getWhat);
 		$filter = $this->_toFilter($params,'AND');
 		if (!$start && !$limit ){
-    		$sql = "SELECT ".$getWhat." FROM ".$tableName." WHERE ".$filter." ".$orderBy;
+			if (!$filter) {
+				$sql = "SELECT ".$getWhat." FROM ".$tableName.$orderBy;
+			}else {
+    			$sql = "SELECT ".$getWhat." FROM ".$tableName." WHERE ".$filter." ".$orderBy;
+			}
 		}else{
     		$sql = "SELECT ".$getWhat." FROM ".$tableName." WHERE ".$filter." LIMIT ".$start.",".$limit." ".$orderBy;
 		}
@@ -49,8 +53,21 @@ class db{
 	}
 
 	//获取数据
-	public function getRow(){
-	    //TODO
+	public function getRow($tableName,$getWhat,$params){
+	    if (!$tableName || !$getWhat) {
+			return false;
+		}
+		$rowList = explode(',', $getWhat);
+		$filter = $this->_toFilter($params,'AND');
+		$sql = "SELECT ".$getWhat." FROM ".$tableName." WHERE ".$filter;
+		$result = mysql_query($sql);
+		$data = mysql_fetch_row($result);
+		mysql_free_result($result);
+		if ($data) {
+		    return $data;
+		}else {
+		    return false;
+		}
 	}
 
 	public function save($tableName,$params){

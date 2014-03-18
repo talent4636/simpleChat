@@ -1,16 +1,31 @@
 <?php
 require_once "db.php";
+require_once "member.php";
 class main{
     //接收消息
 	public function getMyMsg($sendData){
 		$db = new db();
+		$memObj = new member();
+		$mem = $memObj->getCurrentMember();
+		if (!@$sendData['from'] || !$mem) {
+			@$this->_end('faile', '');
+			exit;
+		}
 		$params = array(
-		        'send_to'=>'3',
-		        'send_from'=>'1',
+		        'send_to'=>$mem['id'],
+		        'send_from'=>$sendData['from'],
 		        'status'=>'1',
 		        );
-		$data = $db->getList('message_main','content,time',$params,'','','');
-		$this->_end('succ',$data);
+		$res = $db->getList('message_main','content,time',$params,'','','');
+		if ($res) {
+			$data = array();
+			foreach ($res as $key => $value) {
+				$data[$key]['content'] = $value['content'];
+				$data[$key]['time'] = date("Y-m-d H:i:s",$value['time']);
+				$data[$key]['name'] = $memObj->getNameByMemId($sendData['from']);
+			}
+		}
+		@$this->_end('succ',$data);
 	}
 	
 	//发送消息

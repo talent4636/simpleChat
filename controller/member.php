@@ -4,10 +4,8 @@ require_once "db.php";
 class member{
     
     public function __construct(){
-        session_start();
-        
+        @session_start();
     }
-    
     
     //登陆
     public function login($data){
@@ -20,7 +18,7 @@ class member{
             $this->_end('failure','验证码错误');
             exit;
         }
-        $mem = $db->getList('member', 'id,password', array('login_name'=>$data['login_name']),'','','');
+        $mem = $db->getList('member', 'id,password,name', array('login_name'=>$data['login_name']),'','','');
         if (!$mem){
             $this->_end('failure','用户名或密码错误');
             exit;
@@ -28,15 +26,22 @@ class member{
         if ($mem[0]){
             if ($mem[0]['password'] == $this->_pwdMd5($data['password'])){
                 //写入session 和 cookie  TODO
-                $this->_end('succ','登陆成功');
+                $_SESSION['chatmember'] = array(
+                        'id'=>$mem[0]['id'],
+                        'login_name'=>$data['login_name'],
+                        'name'=>$mem[0]['name'],
+                        );
+                setcookie('chatname',$mem[0]['name'],time()+3600,'/');
+                // $this->_end('succ','登陆成功');
+                $url = "'../index.html'";
+                $this->_jumpTo($url);
                 exit;
             }
         }
         $this->_end('failure','用户名或密码错误');
         exit;
-        
     }
-    
+
     //注册
     public function signup($data){
         //判断格式 1.验证码，2.格式
@@ -65,6 +70,40 @@ class member{
         }else {
             $this->_end('failure','抱歉，注册失败');
         }
+    }
+    
+    //获取当前登录的用户信息，返回array
+    public function getCurrentMember(){
+        return $_SESSION['chatmember'];
+    }
+    
+    //根据用户id获取用户名
+    public function getNameByMemId($memId){
+        $db = new db();
+        $res = $db->getRow('member', 'name', array(
+                'id'=>$memId,
+                ));
+        return $res[0];
+    }
+
+    //TODO
+    public function getMemberList(){
+        $db = new db();
+        $res = $db->getList('member','name,id','','','','');
+        $this->_end('succ',$res);
+    }
+
+    public function logOut(){
+        // $_SESSION['chatmember'] = '';
+        // setcookie('chatname','');
+        // echo "succ";
+    }
+
+    private function _jumpTo($url){
+
+        echo "<script language='javascript' type='text/javascript'>";
+        echo "window.location.href=".$url.";";
+        echo "</script>";
     }
     
     //验证码验证
@@ -101,6 +140,10 @@ switch ($type){
         $main->login($data);
     case 'signup':
         $main->signup($data);
+    case 'getMemberList':
+        $main->getMemberList();
+    case 'logOut':
+        $main->logOut();
     default: return;
 }
 

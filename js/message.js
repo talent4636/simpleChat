@@ -6,7 +6,7 @@ var msg = {
 		var msgbox = $('.msg-main .msg-box ul');
         
 		//第一步，更新当前页面
-		var name = "myname";//TODO
+		var name = member.currentName();
 		var myDate = new Date();
 		var time = myDate.toLocaleString();
 		if(con.length<1){
@@ -34,19 +34,26 @@ var msg = {
 	
 	//获取消息
 	get:function(){
-		var name = '123';
+		//获取到当前聊天双方的id
+		var from = member.getWithWho();
+		// var to = '';
 		$.ajax({
 			type:"POST",
 			url:"../simpleChat/controller/mainController.php",
 			dataType:"json",
-			data: "type=get&name="+name,
+			// data: "type=get&from="+from+"&to="+to,
+			data: "type=get&from="+from,
 			success: function(r){
 				if (r.status=='succ'){
-					$.each(r.data,function(i,v){
-						msg.displayNew(v.name,v.time,v.content);
-					});
+					if (!r.data) {
+						msg.displayNew('','暂无记录','');
+					}else {
+						$.each(r.data,function(i,v){
+							msg.displayNew(v.name,v.time,v.content);
+						});
+					}
 				}else{
-					alert('Warning!');
+					alert('请先在好友列表中选择聊天对象!');
 				}
 			}
 		});
@@ -65,11 +72,6 @@ var msg = {
 		var content = $('#in-area').val(''); 
 	},
 	
-	//获取当前用户名
-	currentName:function(){
-		//TODO
-	},
-	
 	//发送错误时的处理
 	sendError:function(){
 		var lastOne = $('.sending');
@@ -84,6 +86,13 @@ var msg = {
         return content;
 		
 	}
+
+	//TODO
+	// login:function(){//$("input[name*='man']") 
+	// 	$(".login-submit input[type*='submit']").live("click",function(){
+	// 		alert('succ');
+	// 	});
+	// }
 	
 }
 

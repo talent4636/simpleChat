@@ -1,21 +1,23 @@
 body{width: 100%;font-family: "Microsoft YaHei";font-size: 14px;}
 em{font-style:normal;font-size:13px;}
-em.name{}
+em.name{padding: 0 10px 0 0px;}
 .chat{margin-left: auto;margin-right: auto;width: 600px;height: 500px;border:1px solid #999;background: #9E8872;border-radius: 5px;}
 .chat .top-title{height: 50px;width: 100%;text-align: left;line-height: 30px;}
 .chat .top-title div{float:left; padding: 10px;}
 .chat .top-title .face{width: 30px;height: 30px;}
-.chat .top-title .text{width: 400px;height: 30px;}
+.chat .top-title .text{width: 520px;height: 30px;}
+.chat .top-title .text .logout-btn{float: right;}
 .chat .top-title .face img{width: 30px;height: 30px;}
-.chat .top-title strong{color: red;padding: 0 5px;font-weight: 700;}
+.chat .top-title strong{color:#FB5;padding: 0 5px;font-weight: 700;}
 .chat .main{width: 580px;height: 430px;margin: 10px;}
 .chat .main div{float: left;}
 .chat .main .friend-list{width: 140px;height: 400px;background: white;border-radius: 3px;padding: 5px;}
 .chat .main .friend-list .list{width: 140px;height: 350px;}
-.chat .main .friend-list .list ul li{list-style-type:none;padding: 5px;margin-left: -20px;}
+.chat .main .friend-list .list ul li{list-style-type:none;padding: 1px;margin-left: -20px;cursor: pointer;}
+.chat .main .friend-list .list ul li:hover{color:#FB5;}
 .chat .main .msg-main{width: 420px;height: 430px;margin-left: 10px;}
 .chat .main .msg-main .msg-box{overflow:auto;background: #BBB;width: 400px;height: 300px;border-radius: 3px;padding: 5px;}
-.chat .main .msg-main .msg-box li{list-style-type:none;margin-left:-40px;}
+.chat .main .msg-main .msg-box li{list-style-type:none;margin-left:-40px;padding-bottom: 5px;}
 .chat .main .msg-main .msg-box li.failure .wrong{color:red;font-size:10px;float:right;}
 .chat .main .msg-main .msg-box .content{display: block;}
 .chat .main .msg-main .msg-send{padding: 5px 0 0 0;width: 400px;height: 90px;}
