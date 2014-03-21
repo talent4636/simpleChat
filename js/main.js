@@ -1,14 +1,8 @@
-$(document).ready(function(){
-	main.checkLogin();
-	main.getMemberList();
-	main.addEvent();
-	main.clearAll();
-});
-
 var main = {
 
 	getMemberList:function(){
 		//ajax获取到当前的用户列表，并显示出来。
+		main.listShowLoading("show");
 		$.ajax({
 		   type: "POST",
 		   url: "../simpleChat/controller/member.php",
@@ -24,8 +18,11 @@ var main = {
 		   	        var memCount = rmsg.data.length-1;
 		   	        member.updateMemberCount(memCount);
 			   }else{
-			       alert('获取聊天记录失败，请刷新！');
+			       alert(rmsg.data);
+				   top.location='login.html';
 			   }
+			   main.listShowLoading("hide");
+			   main.textShowLoading("hide");
 		   }
 		}); 
 	},
@@ -51,9 +48,13 @@ var main = {
 		list.live("click",function(){
 			member.changeChatObj($(this));
 		});
-		logoutBtn.click = function(){
-			member.logOut();
-		};
+		logoutBtn.live("click",function(){
+			if (confirm('确定退出？')){
+				member.logOut();
+			}else {
+				return false;
+			}
+		});
 		//获取信息
 		msg.get();
 	},
@@ -64,6 +65,28 @@ var main = {
 		var chatList = $('.msg-main .msg-box ul');
 		inputArea.html('');
 		chatList.html('');
+	},
+	
+	//ajax获取数据过程中样式变化
+	//type =  list/ text
+	listShowLoading:function(changeto){
+		if(!changeto) return false;
+		var list = $('.loading-friend-list');
+		if(changeto=="show")list.show();
+		else list.hide();
+	},
+	
+	textShowLoading:function(changeto){
+		if(!changeto) return false;
+		var text = $('.loading-chat-history');
+		if(changeto=="show")text.show();
+        else text.hide();
+	},
+	
+	//发送消息成功之后，loading取消
+	msgLoading:function(id){
+		var item = $('#'+id);
+		item.hide();
 	}
 	
 	

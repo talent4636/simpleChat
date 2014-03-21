@@ -24,7 +24,6 @@ var member = {
 
 	//切换聊天对象
 	changeChatObj:function(_this){
-		//TODO
 		var memberId = _this.attr('member-id');
 		var memberName = _this.html();
 		var nowOnChat = $('.top-title .text .on-chat');
@@ -45,15 +44,10 @@ var member = {
 		   data: "type=logOut",
 		   success: function(rmsg){
 		   	   if(rmsg=='succ'){
-		   	   		//
-		   	   		alert(rmsg);
-			   }else{
-			        //
-			        alert(rmsg);
+		   	   		top.location='login.html';
 			   }
 		   }
 		}); 
-		// alert('11');
 	}
 
 }

@@ -33,7 +33,6 @@ class db{
 		}
 		$result = mysql_query($sql);
 		$r = array();
-// 		print_r(mysql_fetch_array($result));exit;
 		if ($result) {
 		    $i = 0;
 		    while ($row = mysql_fetch_array($result)){
@@ -84,7 +83,14 @@ class db{
 		foreach ($params as $key => $value) {
 			//解析$key
 			if (strpos($key,"|")) {
-				strtok($key, "|");
+				$sub = explode('|', $key);
+				switch ($sub[1]){
+				    case 'in':
+    				    $inwhat = implode(',', $value);
+				        $sqlArr[] = " ".$sub[0]." IN (".$inwhat.") ";
+				        break;
+				    default: ;
+				}
 				//TODO
 			}else {
 			    $sqlArr[] = "`".$key."`='".$value."'";

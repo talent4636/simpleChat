@@ -2,6 +2,13 @@ var msg = {
 	
 	//发送消息
 	send:function(){
+		//判断是否有聊天对象
+		//TODO
+		var withObjId = member.getWithWho();
+		if (!withObjId){
+			alert('请先选择一个好友！');
+			return false;
+		}
 		var con = $('#in-area').val();
 		var msgbox = $('.msg-main .msg-box ul');
         
@@ -12,7 +19,8 @@ var msg = {
 		if(con.length<1){
 			return ;
 		};
-		msg.displayNew(name,time,con);
+		var timestamp =Date.parse(new Date());
+		msg.displayNew(name,time,con,timestamp);
 		msg.cleanBox();//清空输入框
 		
 		//第二部，发送到服务器
@@ -20,10 +28,11 @@ var msg = {
 		   type: "POST",
 		   url: "../simpleChat/controller/mainController.php",
 		   dataType:"json",
-		   data: "type=send&name="+name+"&time="+time+"&content="+con,
+		   data: "type=send&to="+withObjId+"&time="+time+"&content="+con,
 		   success: function(rmsg){
 		   	   if(rmsg.status=='succ'){
-		   	       //发送成功，不做改变
+		   	       //发送成功，loading效果取消
+				   main.msgLoading(timestamp);
 			   }else{
 			       msg.sendError();
 			   }
@@ -36,7 +45,7 @@ var msg = {
 	get:function(){
 		//获取到当前聊天双方的id
 		var from = member.getWithWho();
-		// var to = '';
+		main.textShowLoading("show");
 		$.ajax({
 			type:"POST",
 			url:"../simpleChat/controller/mainController.php",
@@ -46,23 +55,28 @@ var msg = {
 			success: function(r){
 				if (r.status=='succ'){
 					if (!r.data) {
-						msg.displayNew('','暂无记录','');
+//						msg.displayNew('','暂无记录','');
 					}else {
 						$.each(r.data,function(i,v){
 							msg.displayNew(v.name,v.time,v.content);
 						});
 					}
 				}else{
-					alert('请先在好友列表中选择聊天对象!');
+					return false;
 				}
+				main.textShowLoading("hide");
 			}
 		});
 		
 	},
 	
 	//显示新的聊天记录
-	displayNew:function(name,time,con){
-		content = msg.changeToCon(name,time,con);
+	displayNew:function(name,time,con,id){
+		if(id){
+			var content = msg.changeToConWithLoading(name,time,con,id);
+		}else {
+			var content = msg.changeToCon(name,time,con);
+		}
 		var msgbox = $('.msg-main .msg-box ul');
 		msgbox.append(content);
 	},
@@ -84,16 +98,13 @@ var msg = {
 	changeToCon:function(name,time,con){
 		var content = "<li class='sending'><em class='name'>"+name+"</em><em class='time'>"+time+"</em><span class='content'>"+con+"</span></li>";
         return content;
-		
-	}
-
-	//TODO
-	// login:function(){//$("input[name*='man']") 
-	// 	$(".login-submit input[type*='submit']").live("click",function(){
-	// 		alert('succ');
-	// 	});
-	// }
+	},
 	
+	//将内容转化成可以显示的内容并返回  但是带着loading的图片
+	changeToConWithLoading:function(name,time,con,id){
+		var content = "<li class='sending'><em class='name'>"+name+"</em><em class='time'>"+time+"</em><em class='loading' id='"+id+"'><img src='images/system/loading-green.gif'/></em><span class='content'>"+con+"</span></li>";
+        return content;
+	}
 }
 
 

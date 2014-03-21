@@ -31,7 +31,7 @@ class member{
                         'login_name'=>$data['login_name'],
                         'name'=>$mem[0]['name'],
                         );
-                setcookie('chatname',$mem[0]['name'],time()+3600,'/');
+                setcookie('chatname',$mem[0]['name'],time()+3600*24,'/');
                 // $this->_end('succ','登陆成功');
                 $url = "'../index.html'";
                 $this->_jumpTo($url);
@@ -88,19 +88,23 @@ class member{
 
     //TODO
     public function getMemberList(){
+        if (!$_SESSION['chatmember']){
+            $this->_end('failure','请先登录');
+            exit;
+        }
         $db = new db();
         $res = $db->getList('member','name,id','','','','');
         $this->_end('succ',$res);
     }
 
     public function logOut(){
-        // $_SESSION['chatmember'] = '';
-        // setcookie('chatname','');
-        // echo "succ";
+        $_SESSION['chatmember'] = '';
+        setcookie('chatname','');
+        echo json_encode("succ");
     }
 
+    //useless for now
     private function _jumpTo($url){
-
         echo "<script language='javascript' type='text/javascript'>";
         echo "window.location.href=".$url.";";
         echo "</script>";
@@ -137,13 +141,13 @@ $data = $_POST;
 $type=$sendData['type'];
 switch ($type){
     case 'login':
-        $main->login($data);
+        $main->login($data);break;
     case 'signup':
-        $main->signup($data);
+        $main->signup($data);break;
     case 'getMemberList':
-        $main->getMemberList();
+        $main->getMemberList();break;
     case 'logOut':
-        $main->logOut();
+        $main->logOut();break;
     default: return;
 }
 

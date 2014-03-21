@@ -8,14 +8,6 @@
 	<script type="text/javascript" src="js/member.js"></script>
 	<script type="text/javascript" src="js/message.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-		    main.checkLogin();
-		    main.getMemberList();
-		    main.addEvent();
-		    main.clearAll();
-		});
-	</script>
 
 </head>
 <body>
@@ -37,9 +29,6 @@
 					<span>好友列表（<strong>-</strong>）</span>
 				</div>
 				<div class='list'>
-					<div class="loading-friend-list" style="display:none;">
-						<img src="images/system/loading.jpg" />
-					</div>
 					<ul>
 						<!-- 从后台取数据 -->
 					</ul>
@@ -47,17 +36,19 @@
 			</div>
 			<div class="msg-main">
 				<div class="msg-box">
-					<div style="display:none;" class="loading-chat-history">
-						<font>加载中，请稍后</font>
-                        <img src="images/system/loading.jpg" />
-                    </div>
 					<ul>
-						<!--li class='sending'>
-							<em class='name'>asdfasdf</em>
-							<em class='time'>1234-12-12 04:21</em>
-							<em class='loading'><img src="images/system/loading-green.gif" /></em>
-							<span class='content'>这个是一条测试数据</span>
-						</li-->
+						<!-- <li>
+							<em class="name">张飞</em><em class="time">2014-03-07 16:4:58</em>
+							<span class="content">你好，你是谁？</span>
+						</li>
+						<li>
+							<em class="name">王麻子</em><em class="time">2014-03-07 16:4:58</em>
+							<span class="content">你好，我是王麻子，你是？</span>
+						</li>
+						<li>
+							<em class="name">张飞</em><em class="time">2014-03-07 16:4:58</em>
+							<span class="content">哦，好高兴见到你！！</span>
+						</li> -->
 					</ul>
 				</div>
 				<div class="msg-send">
